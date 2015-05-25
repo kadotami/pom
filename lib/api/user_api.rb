@@ -6,5 +6,14 @@ class User_API < Grape::API
     get do
       User.all
     end
+
+    desc "return a user"
+    params do
+      requires :id, type: Integer
+    end
+    get ' :id' do
+      Document.find(parms[:id])
+    end
+
   end
 end
