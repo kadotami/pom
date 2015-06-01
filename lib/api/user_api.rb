@@ -18,14 +18,15 @@ class User_API < Grape::API
 
     desc "create a User"
     params do
-      requires :name, type: String
+      requires :account_id, type: String
+      optional :name, type: String
       optional :height, type: Float
       optional :weight, type: Float
       optional :fat_rate, type: Float
     end
     # http://localhost:3000/api/user
     post do
-      user = ActionController::Parameters.new(params).permit(:name, :height, :weight, :fat_rate)
+      user = ActionController::Parameters.new(params).permit(:account_id, :name, :height, :weight, :fat_rate)
       user = User.new(user)
       user.save
     end
