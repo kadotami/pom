@@ -9,10 +9,10 @@ class User_API < Grape::API
 
     desc "return a user name"
     params do
-      requires :name, type: String
+      requires :account_id, type: String
     end
-    get ':name' do
-      User.find_by(name: params[:name])
+    get ':account_id' do
+      User.find_by(account_id: params[:account_id])
     end
   end
 end
