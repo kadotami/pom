@@ -7,13 +7,12 @@ class User_API < Grape::API
       User.all
     end
 
-    desc "return a user"
+    desc "return a user name"
     params do
-      requires :id, type: Integer
+      requires :name, type: String
     end
-    get ' :id' do
-      Document.find(parms[:id])
+    get ':name' do
+      User.find_by(name: params[:name])
     end
-
   end
 end
