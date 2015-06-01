@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20150525095746) do
 
   create_table "users", force: :cascade do |t|
+    t.string   "name"
     t.float    "height"
     t.float    "weight"
     t.float    "fat_rate"
