@@ -24,10 +24,29 @@ class User_API < Grape::API
       optional :weight, type: Float
       optional :fat_rate, type: Float
     end
-    # http://localhost:3000/api/user
+    # http://localhost:3000/api/users
     post do
       user = ActionController::Parameters.new(params).permit(:account_id, :name, :height, :weight, :fat_rate)
       user = User.new(user)
+      user.save
+    end
+
+    desc "edit a User"
+    # http://localhost:3000/api/users/{:id}
+    params do
+      optional :account_id, type: String
+      optional :name, type: String
+      optional :height, type: Float
+      optional :weight, type: Float
+      optional :fat_rate, type: Float
+    end
+    patch ':id' do
+      user = User.find(params[:id])
+      user.account_id = params[:account_id] if params[:account_id].present?
+      user.name = params[:name] if params[:name].present?
+      user.height = params[:height] if params[:height].present?
+      user.weight = params[:weight] if params[:weight].present?
+      user.fat_rate = params[:fat_rate] if params[:fat_rate].present?
       user.save
     end
   end
