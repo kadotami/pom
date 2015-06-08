@@ -49,5 +49,12 @@ class User_API < Grape::API
       user.fat_rate = params[:fat_rate] if params[:fat_rate].present?
       user.save
     end
+
+    desc "delete a user"
+    # http://localhost:3000/api/documents/{:id}
+    delete ':id' do
+      user = User.find(params[:id])
+      user.destroy
+    end
   end
 end
